@@ -2,8 +2,15 @@ import { getUser } from "@/lib/users"
 import { EditUserForm } from "@/components/edit-user-form"
 import { notFound } from "next/navigation"
 
-export default async function EditUserPage({ params }: { params: { id: string } }) {
-  const user = await getUser(params.id)
+interface PageProps {
+  params: Promise<{ id: string }>
+}
+
+export default async function EditUserPage({
+  params
+}: PageProps) {
+  const { id } = await params
+  const user = await getUser(id)
 
   if (!user) {
     notFound()
