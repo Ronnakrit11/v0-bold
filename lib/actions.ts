@@ -8,7 +8,7 @@ export async function createUser(data: { name: string; email: string; revenue: n
     await prisma.user.create({ data })
     revalidatePath("/dashboard/users")
   } catch (error) {
-    console.error('Error creating user:', error)
+    console.error('Error creating user:', error )
     throw new Error('Failed to create user')
   }
 }
